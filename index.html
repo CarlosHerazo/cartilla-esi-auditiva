@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi cuerpo, mis derechos, mis decisiones — ESI Accesible LSC</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f0f4f0;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:2rem 1rem;font-family:'Nunito',sans-serif}
+.app{width:100%;max-width:680px}
+
+:root{--T:#1D9E75;--Td:#085041;--Tl:#E1F5EE;--Co:#D85A30;--Col:#FAECE7;--Pu:#534AB7;--Pul:#EEEDFE;--Gr:#3B6D11;--Grl:#EAF3DE;--Re:#A32D2D;--Rel:#FCEBEB;--Bl:#185FA5;--Bll:#E6F1FB;--Am:#BA7517;--Aml:#FAEEDA;--bg:#ffffff;--bg2:#f7f9f7;--txt:#1a1a1a;--txt2:#555;--border:rgba(0,0,0,0.1)}
+@media(prefers-color-scheme:dark){:root{--bg:#1e1e1e;--bg2:#2a2a2a;--txt:#f0f0f0;--txt2:#aaa;--border:rgba(255,255,255,0.12)}body{background:#111}}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pop{0%{opacity:0;transform:scale(.3)}65%{transform:scale(1.1)}100%{opacity:1;transform:scale(1)}}
+@keyframes slideR{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideL{from{opacity:0;transform:translateX(-60px)}to{opacity:1;transform:translateX(0)}}
+@keyframes modalIn{from{opacity:0;transform:translateY(40px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+@keyframes ripple{0%{transform:scale(.5);opacity:.7}100%{transform:scale(3.5);opacity:0}}
+@keyframes staggerIn{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:translateX(0)}}
+@keyframes bounce{0%,100%{transform:translateY(0)}40%{transform:translateY(-10px)}70%{transform:translateY(-3px)}}
+@keyframes confPop{0%{transform:scale(.5);opacity:.8}100%{transform:scale(3);opacity:0}}
+
+.pg{display:none}.pg.active{display:block}
+.aR{animation:slideR .35s cubic-bezier(.2,.8,.4,1) both}
+.aL{animation:slideL .35s cubic-bezier(.2,.8,.4,1) both}
+
+/* COVER */
+.cover{background:var(--Td);border-radius:24px;padding:2.8rem 2rem;text-align:center;color:white;position:relative;overflow:hidden;min-height:360px;box-shadow:0 8px 40px rgba(8,80,65,.25)}
+.cb1{position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.05)}
+.cb2{position:absolute;bottom:-70px;left:-70px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.04)}
+.cbadge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:5px 16px;font-size:11px;display:inline-block;letter-spacing:1.5px;font-weight:700}
+.cicons{display:flex;justify-content:center;gap:14px;margin:1.4rem 0}
+.cico{width:60px;height:60px;border-radius:17px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.2);cursor:default}
+.cico i{font-size:27px;color:white}
+.ctitle{font-size:32px;font-weight:900;line-height:1.15;margin:.5rem 0}
+.csub{font-size:13px;opacity:.85;line-height:1.6;margin:.6rem 0 1.1rem}
+.lscpill{background:rgba(29,158,117,.3);border:1px solid rgba(29,158,117,.6);border-radius:10px;padding:9px 16px;font-size:12px;display:inline-flex;align-items:center;gap:7px;font-weight:700;cursor:pointer;transition:background .2s}
+.lscpill:hover{background:rgba(29,158,117,.5)}
+.tap-hint{font-size:10px;color:rgba(255,255,255,.45);margin-top:.7rem;letter-spacing:.8px}
+.cover-meta{display:flex;justify-content:center;gap:28px;margin-top:1.3rem}
+.cover-meta-item{text-align:center;color:rgba(255,255,255,.55);font-size:10px;font-weight:700}
+.cover-meta-item i{font-size:19px;display:block;margin-bottom:4px;color:rgba(255,255,255,.8)}
+
+/* CONTENT CARD */
+.cc{background:var(--bg);border-radius:20px;border:.5px solid var(--border);overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.07)}
+.ph{padding:1.1rem 1.4rem;display:flex;align-items:center;gap:12px;border-bottom:.5px solid var(--border)}
+.pnum{width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0}
+.ptitle{font-size:21px;font-weight:900;color:var(--txt)}
+.pb{padding:1.2rem 1.4rem}
+
+/* CLICKABLE */
+.clickable{cursor:pointer;transition:transform .18s}
+.clickable:hover{transform:translateY(-3px)}
+.clickable:active{transform:scale(.97)}
+.chip{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:900;border-radius:6px;padding:3px 8px;letter-spacing:.2px}
+
+/* BODY PAGE */
+.body-row{display:flex;align-items:center;gap:9px;border-radius:10px;padding:7px 10px;border:.5px solid var(--border);margin-bottom:6px;background:var(--bg)}
+
+/* ADOLESCENCE GRID */
+.picgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:.75rem 0}
+.piccard{border-radius:14px;padding:1rem;text-align:center;border:.5px solid var(--border)}
+.piccard i{font-size:36px;display:block;margin-bottom:5px}
+
+/* CONSENT */
+.consent-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:.8rem 0}
+.yes-box{border-radius:14px;padding:1.2rem;text-align:center;background:#EAF3DE;border:2.5px solid #639922}
+.no-box{border-radius:14px;padding:1.2rem;text-align:center;background:#FCEBEB;border:2.5px solid #A32D2D}
+.yes-box i,.no-box i{font-size:48px;display:block;margin-bottom:8px}
+
+/* BIGBOX */
+.bigbox{border-radius:0 14px 14px 0;padding:.95rem 1.15rem;margin:.75rem 0;border-left-width:4px;border-left-style:solid}
+
+/* ALERT */
+.alert2{border-radius:12px;padding:.85rem 1rem;margin:.75rem 0;display:flex;gap:9px;align-items:flex-start}
+.alert2 i{font-size:21px;flex-shrink:0;margin-top:1px}
+
+/* RIGHTS */
+.rights-list{display:flex;flex-direction:column;gap:8px;margin:.75rem 0}
+.rrow{display:flex;align-items:center;gap:12px;background:var(--bg2);border-radius:12px;padding:.85rem 1rem}
+.rnum{width:37px;height:37px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+/* METHODS */
+.mc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:.75rem 0}
+.mc{border-radius:13px;padding:.9rem;text-align:center;background:var(--bg2);border:.5px solid var(--border)}
+.mc-ico{width:48px;height:48px;border-radius:12px;margin:0 auto 7px;display:flex;align-items:center;justify-content:center}
+.mc-ico i{font-size:23px}
+
+/* INFO NOTE */
+.infonote{font-size:11px;color:var(--txt2);background:var(--bg2);border-radius:7px;padding:7px 10px;display:flex;gap:6px;align-items:center;margin-top:.6rem}
+
+/* FINAL BANNER */
+.final-banner{background:var(--Td);border-radius:14px;padding:1.4rem;text-align:center;color:white;margin-top:.8rem;position:relative;overflow:hidden}
+.conf-dot{position:absolute;border-radius:50%;pointer-events:none}
+
+/* PROGRESS */
+.prog-area{display:flex;gap:6px;justify-content:center;margin-bottom:.9rem}
+.dot{width:28px;height:8px;border-radius:4px;background:rgba(0,0,0,.12);cursor:pointer;transition:all .3s}
+@media(prefers-color-scheme:dark){.dot{background:rgba(255,255,255,.15)}}
+.dot.active{background:var(--T);width:36px}
+.dot.visited{background:#9FE1CB}
+
+/* NAV */
+.nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:.9rem}
+.nbtn{display:flex;align-items:center;gap:6px;background:var(--bg);border:.5px solid var(--border);border-radius:10px;padding:9px 18px;font-size:14px;font-weight:900;cursor:pointer;color:var(--txt);transition:all .15s;font-family:'Nunito',sans-serif;position:relative;overflow:hidden}
+.nbtn:hover:not(:disabled){background:var(--T);color:white;border-color:var(--T)}
+.nbtn:disabled{opacity:.3;cursor:default}
+.pctr{font-size:11px;color:var(--txt2);font-weight:700;background:var(--bg2);padding:6px 14px;border-radius:8px;text-align:center;max-width:200px}
+.rplel{position:absolute;border-radius:50%;background:rgba(255,255,255,.3);animation:ripple .6s linear both;pointer-events:none}
+
+/* MODAL */
+.modal-wrap{background:var(--bg);border-radius:20px;border:.5px solid var(--border);overflow:hidden;box-shadow:0 4px 30px rgba(0,0,0,.12)}
+.mhdr{padding:1.4rem 1.4rem 1.2rem;position:relative}
+.mhdr-back{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:5px 12px;font-size:12px;font-weight:700;color:white;cursor:pointer;margin-bottom:.9rem;transition:background .15s;font-family:'Nunito',sans-serif}
+.mhdr-back:hover{background:rgba(255,255,255,.35)}
+.mhdr-ico{width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;margin-bottom:.8rem}
+.mhdr-ico i{font-size:28px;color:white}
+.mhdr-title{font-size:22px;font-weight:900;color:white;line-height:1.2}
+.mhdr-sub{font-size:12px;color:rgba(255,255,255,.75);margin-top:4px;font-weight:700}
+.mbody{padding:1.2rem 1.4rem;display:flex;flex-direction:column;gap:.85rem}
+.msec{border-radius:13px;padding:1rem 1.1rem;border:.5px solid var(--border);background:var(--bg2)}
+.msec-label{font-size:10px;font-weight:900;letter-spacing:1.2px;margin-bottom:.45rem;display:flex;align-items:center;gap:5px}
+.msec-text{font-size:13px;color:var(--txt);line-height:1.65;font-weight:400}
+.lsc-box{border-radius:13px;padding:1rem 1.1rem;background:#FAEEDA;border:.5px solid #FAC775}
+.lsc-lbl{font-size:10px;font-weight:900;letter-spacing:1.2px;color:#633806;margin-bottom:.45rem;display:flex;align-items:center;gap:5px}
+.lsc-txt{font-size:13px;color:#412402;line-height:1.65;font-weight:700}
+.fact-box{border-radius:13px;padding:1rem 1.1rem;background:#E6F1FB;border:.5px solid #85B7EB}
+.fact-lbl{font-size:10px;font-weight:900;letter-spacing:1.2px;color:#0C447C;margin-bottom:.45rem;display:flex;align-items:center;gap:5px}
+.fact-txt{font-size:13px;color:#042C53;line-height:1.65}
+
+/* FOOTER */
+.footer{text-align:center;margin-top:1.5rem;font-size:11px;color:var(--txt2);padding-bottom:.5rem}
+.footer a{color:var(--T);text-decoration:none;font-weight:700}
+</style>
+</head>
+<body>
+<div class="app">
+
+<div class="prog-area" id="pbar"></div>
+<div id="pgc">
+
+<!-- PORTADA -->
+<div class="pg" id="p0">
+<div class="cover">
+  <div class="cb1"></div><div class="cb2"></div>
+  <div class="cbadge" style="animation:fadeUp .5s .1s both">CARTILLA EDUCATIVA — LSC</div>
+  <div class="cicons">
+    <div class="cico" style="animation:pop .5s .25s both"><i class="ti ti-hand-stop"></i></div>
+    <div class="cico" style="animation:pop .5s .4s both"><i class="ti ti-heart-handshake"></i></div>
+    <div class="cico" style="animation:pop .5s .55s both"><i class="ti ti-user-check"></i></div>
+  </div>
+  <div class="ctitle" style="animation:fadeUp .6s .3s both">Mi cuerpo,<br>mis derechos,<br>mis decisiones</div>
+  <div class="csub" style="animation:fadeUp .6s .5s both">Educación Sexual Integral accesible<br>para personas con discapacidad auditiva</div>
+  <div style="animation:fadeUp .5s .7s both">
+    <div class="lscpill clickable" onclick="openModal('lsc')">
+      <i class="ti ti-accessible" style="font-size:15px"></i>
+      Disponible en LSC — Lengua de Señas Colombiana
+      <i class="ti ti-info-circle" style="font-size:13px;opacity:.7"></i>
+    </div>
+  </div>
+  <div class="tap-hint" style="animation:fadeUp .5s .9s both">TOCA LAS TARJETAS PARA VER DEFINICIONES</div>
+  <div class="cover-meta" style="animation:fadeUp .5s 1.1s both">
+    <div class="cover-meta-item"><i class="ti ti-books"></i>6 PÁGINAS</div>
+    <div class="cover-meta-item"><i class="ti ti-accessible"></i>ACCESIBLE</div>
+    <div class="cover-meta-item"><i class="ti ti-certificate"></i>BASADO EN DERECHOS</div>
+  </div>
+</div>
+</div>
+
+<!-- PÁGINA 1 -->
+<div class="pg" id="p1">
+<div class="cc">
+  <div class="ph"><div class="pnum" style="background:#E1F5EE;color:#085041">1</div><i class="ti ti-mood-smile" style="font-size:21px;color:#1D9E75"></i><div class="ptitle">Mi cuerpo</div></div>
+  <div class="pb">
+    <div style="background:var(--bg2);border-radius:14px;padding:1.1rem;margin-bottom:.8rem;display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap">
+      <div style="text-align:center">
+        <div style="width:72px;height:120px;border-radius:14px;background:var(--bg);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 7px"><i class="ti ti-user" style="font-size:48px;color:#1D9E75"></i></div>
+        <div style="font-size:10px;font-weight:700;color:var(--txt2)">Cuerpo humano</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:7px;justify-content:center;max-width:210px">
+        <div class="body-row clickable" onclick="openModal('cabeza')"><i class="ti ti-brain" style="font-size:18px;color:#1D9E75;flex-shrink:0"></i><div><div style="font-size:12px;font-weight:900;color:var(--txt)">Cabeza</div><div style="font-size:10px;color:var(--txt2)">piensa y siente</div></div><span class="chip" style="background:#E1F5EE;color:#085041;margin-left:auto"><i class="ti ti-plus" style="font-size:9px"></i>Ver</span></div>
+        <div class="body-row clickable" onclick="openModal('cuerpo_general')"><i class="ti ti-lungs" style="font-size:18px;color:#1D9E75;flex-shrink:0"></i><div><div style="font-size:12px;font-weight:900;color:var(--txt)">Pecho y tronco</div><div style="font-size:10px;color:var(--txt2)">respira y siente</div></div><span class="chip" style="background:#E1F5EE;color:#085041;margin-left:auto"><i class="ti ti-plus" style="font-size:9px"></i>Ver</span></div>
+        <div class="body-row clickable" onclick="openModal('partes_intimas')" style="background:#FCEBEB;border-color:#F09595"><i class="ti ti-shield" style="font-size:18px;color:#A32D2D;flex-shrink:0"></i><div><div style="font-size:12px;font-weight:900;color:#791F1F">Partes íntimas</div><div style="font-size:10px;color:#A32D2D">zona privada</div></div><span class="chip" style="background:#F7C1C1;color:#501313;margin-left:auto"><i class="ti ti-plus" style="font-size:9px"></i>Ver</span></div>
+      </div>
+    </div>
+    <div class="bigbox clickable" onclick="openModal('autonomia_corporal')" style="background:#E1F5EE;border-left-color:#1D9E75">
+      <div style="font-size:15px;font-weight:900;color:#085041"><i class="ti ti-check" style="font-size:16px;vertical-align:-2px;margin-right:5px"></i>Todas las partes del cuerpo son importantes y merecen respeto</div>
+      <span class="chip" style="background:#1D9E75;color:white;margin-top:7px"><i class="ti ti-info-circle" style="font-size:9px"></i>¿Por qué? Ver más</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PÁGINA 2 -->
+<div class="pg" id="p2">
+<div class="cc">
+  <div class="ph"><div class="pnum" style="background:#E6F1FB;color:#042C53">2</div><i class="ti ti-trending-up" style="font-size:21px;color:#185FA5"></i><div class="ptitle">Cambios en la adolescencia</div></div>
+  <div class="pb">
+    <div class="picgrid">
+      <div class="piccard clickable" onclick="openModal('vello')" style="background:#EEEDFE;border-color:#AFA9EC"><i class="ti ti-beard" style="color:#534AB7"></i><div style="font-size:13px;font-weight:900;color:#3C3489">Crece vello</div><div style="font-size:11px;color:#534AB7">cara y cuerpo</div><span class="chip" style="background:#CECBF6;color:#26215C;margin-top:6px"><i class="ti ti-info-circle" style="font-size:9px"></i>Saber más</span></div>
+      <div class="piccard clickable" onclick="openModal('voz')" style="background:#E6F1FB;border-color:#85B7EB"><i class="ti ti-microphone" style="color:#185FA5"></i><div style="font-size:13px;font-weight:900;color:#0C447C">Cambia la voz</div><div style="font-size:11px;color:#185FA5">más grave</div><span class="chip" style="background:#B5D4F4;color:#042C53;margin-top:6px"><i class="ti ti-info-circle" style="font-size:9px"></i>Saber más</span></div>
+      <div class="piccard clickable" onclick="openModal('crecimiento')" style="background:#EAF3DE;border-color:#97C459"><i class="ti ti-arrows-maximize" style="color:#3B6D11"></i><div style="font-size:13px;font-weight:900;color:#27500A">Crezco más</div><div style="font-size:11px;color:#3B6D11">el cuerpo cambia</div><span class="chip" style="background:#C0DD97;color:#173404;margin-top:6px"><i class="ti ti-info-circle" style="font-size:9px"></i>Saber más</span></div>
+      <div class="piccard clickable" onclick="openModal('emociones')" style="background:#FBEAF0;border-color:#ED93B1"><i class="ti ti-mood-happy" style="color:#993556"></i><div style="font-size:13px;font-weight:900;color:#72243E">Emociones</div><div style="font-size:11px;color:#993556">alegría, amor...</div><span class="chip" style="background:#F4C0D1;color:#4B1528;margin-top:6px"><i class="ti ti-info-circle" style="font-size:9px"></i>Saber más</span></div>
+    </div>
+    <div class="bigbox" style="background:#E1F5EE;border-left-color:#1D9E75"><div style="font-size:15px;font-weight:900;color:#085041"><i class="ti ti-heart" style="font-size:16px;vertical-align:-2px;margin-right:5px"></i>Es normal. Todos los cuerpos cambian. No estás solo/a.</div></div>
+    <div class="infonote"><i class="ti ti-hand-finger"></i>Toca cada tarjeta para conocer qué pasa dentro de tu cuerpo</div>
+  </div>
+</div>
+</div>
+
+<!-- PÁGINA 3 -->
+<div class="pg" id="p3">
+<div class="cc">
+  <div class="ph"><div class="pnum" style="background:#EAF3DE;color:#173404">3</div><i class="ti ti-hand-stop" style="font-size:21px;color:#3B6D11"></i><div class="ptitle">Consentimiento</div></div>
+  <div class="pb">
+    <div class="consent-row">
+      <div class="yes-box clickable" onclick="openModal('si_consentimiento')"><i class="ti ti-thumb-up" style="color:#3B6D11"></i><div style="font-size:15px;font-weight:900;color:#27500A">SÍ quiero</div><div style="font-size:11px;color:#3B6D11;font-weight:700;margin-top:3px">Mano abierta arriba</div><span class="chip" style="background:rgba(99,153,34,.25);color:#173404;margin-top:7px"><i class="ti ti-info-circle" style="font-size:9px"></i>Ver seña</span></div>
+      <div class="no-box clickable" onclick="openModal('no_consentimiento')"><i class="ti ti-hand-off" style="color:#A32D2D"></i><div style="font-size:15px;font-weight:900;color:#791F1F">NO quiero</div><div style="font-size:11px;color:#A32D2D;font-weight:700;margin-top:3px">Mano hacia adelante</div><span class="chip" style="background:rgba(163,45,45,.15);color:#501313;margin-top:7px"><i class="ti ti-info-circle" style="font-size:9px"></i>Ver seña</span></div>
+    </div>
+    <div class="bigbox clickable" onclick="openModal('solo_si')" style="background:#EAF3DE;border-left-color:#3B6D11">
+      <div style="font-size:20px;font-weight:900;color:#173404">SOLO SÍ ES SÍ</div>
+      <div style="font-size:12px;color:#3B6D11;margin-top:4px;font-weight:700">Decir NO siempre es válido. En cualquier momento. Sin explicaciones.</div>
+      <span class="chip" style="background:#3B6D11;color:white;margin-top:7px"><i class="ti ti-gavel" style="font-size:9px"></i>Marco legal Colombia</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PÁGINA 4 -->
+<div class="pg" id="p4">
+<div class="cc">
+  <div class="ph"><div class="pnum" style="background:#FAECE7;color:#4A1B0C">4</div><i class="ti ti-shield-check" style="font-size:21px;color:#D85A30"></i><div class="ptitle">Prevención de abuso</div></div>
+  <div class="pb">
+    <div class="clickable" onclick="openModal('abuso_definicion')" style="background:#FCEBEB;border-radius:14px;padding:1.1rem;text-align:center;margin-bottom:.8rem;border:2px solid #F09595">
+      <i class="ti ti-body-scan" style="font-size:42px;color:#A32D2D;display:block;margin-bottom:7px"></i>
+      <div style="font-size:15px;font-weight:900;color:#791F1F">Las partes íntimas son tuyas</div>
+      <div style="font-size:12px;color:#A32D2D;margin-top:4px">Nadie debe tocarlas sin tu permiso</div>
+      <div style="display:flex;justify-content:center;gap:6px;margin-top:8px;flex-wrap:wrap">
+        <span style="background:#F7C1C1;color:#501313;font-size:11px;font-weight:900;padding:3px 10px;border-radius:5px">Pecho</span>
+        <span style="background:#F7C1C1;color:#501313;font-size:11px;font-weight:900;padding:3px 10px;border-radius:5px">Genitales</span>
+        <span style="background:#F7C1C1;color:#501313;font-size:11px;font-weight:900;padding:3px 10px;border-radius:5px">Glúteos</span>
+      </div>
+      <span class="chip" style="background:#A32D2D;color:white;margin-top:9px"><i class="ti ti-info-circle" style="font-size:9px"></i>Tipos de abuso</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div class="clickable" onclick="openModal('acudir')" style="background:#EAF3DE;border-radius:11px;padding:.85rem;text-align:center">
+        <i class="ti ti-user-heart" style="font-size:24px;color:#3B6D11;display:block;margin-bottom:5px"></i>
+        <div style="font-size:12px;font-weight:900;color:#27500A">Cuéntalo a alguien</div>
+        <span class="chip" style="background:#C0DD97;color:#173404;margin-top:5px"><i class="ti ti-plus" style="font-size:9px"></i>¿A quién?</span>
+      </div>
+      <div class="clickable" onclick="openModal('linea_106')" style="background:#E6F1FB;border-radius:11px;padding:.85rem;text-align:center">
+        <i class="ti ti-phone-call" style="font-size:24px;color:#185FA5;display:block;margin-bottom:5px"></i>
+        <div style="font-size:12px;font-weight:900;color:#0C447C">Línea 106 — ICBF</div>
+        <span class="chip" style="background:#B5D4F4;color:#042C53;margin-top:5px"><i class="ti ti-plus" style="font-size:9px"></i>Cómo usar</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PÁGINA 5 -->
+<div class="pg" id="p5">
+<div class="cc">
+  <div class="ph"><div class="pnum" style="background:#EEEDFE;color:#26215C">5</div><i class="ti ti-vaccine" style="font-size:21px;color:#534AB7"></i><div class="ptitle">Métodos anticonceptivos</div></div>
+  <div class="pb">
+    <div class="mc-grid">
+      <div class="mc clickable" onclick="openModal('condon')"><div class="mc-ico" style="background:#EEEDFE"><i class="ti ti-condom" style="color:#534AB7"></i></div><div style="font-size:13px;font-weight:900;color:var(--txt)">Condón</div><div style="font-size:10px;color:var(--txt2)">Previene embarazos y ETS</div><span class="chip" style="background:#EEEDFE;color:#26215C;margin-top:5px"><i class="ti ti-info-circle" style="font-size:9px"></i>Cómo usarlo</span></div>
+      <div class="mc clickable" onclick="openModal('pastillas')"><div class="mc-ico" style="background:#FBEAF0"><i class="ti ti-pill" style="color:#993556"></i></div><div style="font-size:13px;font-weight:900;color:var(--txt)">Pastillas</div><div style="font-size:10px;color:var(--txt2)">Previenen embarazos</div><span class="chip" style="background:#FBEAF0;color:#4B1528;margin-top:5px"><i class="ti ti-info-circle" style="font-size:9px"></i>Cómo funcionan</span></div>
+      <div class="mc clickable" onclick="openModal('consulta_medica')"><div class="mc-ico" style="background:#E1F5EE"><i class="ti ti-stethoscope" style="color:#085041"></i></div><div style="font-size:13px;font-weight:900;color:var(--txt)">Consulta médica</div><div style="font-size:10px;color:var(--txt2)">El médico orienta</div><span class="chip" style="background:#E1F5EE;color:#085041;margin-top:5px"><i class="ti ti-info-circle" style="font-size:9px"></i>Tus derechos</span></div>
+      <div class="mc clickable" onclick="openModal('control_salud')"><div class="mc-ico" style="background:#FAEEDA"><i class="ti ti-heart-rate-monitor" style="color:#BA7517"></i></div><div style="font-size:13px;font-weight:900;color:var(--txt)">Control periódico</div><div style="font-size:10px;color:var(--txt2)">Cuida tu salud siempre</div><span class="chip" style="background:#FAEEDA;color:#412402;margin-top:5px"><i class="ti ti-info-circle" style="font-size:9px"></i>Ver frecuencia</span></div>
+    </div>
+    <div class="infonote"><i class="ti ti-accessible"></i>En Colombia: exige intérprete LSC en tu consulta médica. Es tu derecho legal.</div>
+  </div>
+</div>
+</div>
+
+<!-- PÁGINA 6 -->
+<div class="pg" id="p6">
+<div class="cc">
+  <div class="ph"><div class="pnum" style="background:#E1F5EE;color:#04342C">6</div><i class="ti ti-scale" style="font-size:21px;color:#1D9E75"></i><div class="ptitle">Mis derechos sexuales</div></div>
+  <div class="pb">
+    <div class="rights-list">
+      <div class="rrow clickable" onclick="openModal('d_informacion')"><div class="rnum" style="background:#E1F5EE"><i class="ti ti-book-2" style="font-size:17px;color:#085041"></i></div><div style="flex:1"><div style="font-size:13px;font-weight:900;color:var(--txt)">Derecho a información clara</div><div style="font-size:11px;color:var(--txt2)">Puedo pedir info en LSC</div></div><span class="chip" style="background:#E1F5EE;color:#085041"><i class="ti ti-chevron-right" style="font-size:9px"></i>Ver</span></div>
+      <div class="rrow clickable" onclick="openModal('d_no')"><div class="rnum" style="background:#FCEBEB"><i class="ti ti-hand-stop" style="font-size:17px;color:#A32D2D"></i></div><div style="flex:1"><div style="font-size:13px;font-weight:900;color:var(--txt)">Derecho a decir NO</div><div style="font-size:11px;color:var(--txt2)">Mi cuerpo, mi decisión</div></div><span class="chip" style="background:#FCEBEB;color:#791F1F"><i class="ti ti-chevron-right" style="font-size:9px"></i>Ver</span></div>
+      <div class="rrow clickable" onclick="openModal('d_autonomia')"><div class="rnum" style="background:#EEEDFE"><i class="ti ti-brain" style="font-size:17px;color:#534AB7"></i></div><div style="flex:1"><div style="font-size:13px;font-weight:900;color:var(--txt)">Derecho a la autonomía</div><div style="font-size:11px;color:var(--txt2)">Soy autónomo/a</div></div><span class="chip" style="background:#EEEDFE;color:#26215C"><i class="ti ti-chevron-right" style="font-size:9px"></i>Ver</span></div>
+      <div class="rrow clickable" onclick="openModal('d_respeto')"><div class="rnum" style="background:#E6F1FB"><i class="ti ti-users" style="font-size:17px;color:#185FA5"></i></div><div style="flex:1"><div style="font-size:13px;font-weight:900;color:var(--txt)">Derecho a relaciones con respeto</div><div style="font-size:11px;color:var(--txt2)">Igualdad y dignidad</div></div><span class="chip" style="background:#E6F1FB;color:#042C53"><i class="ti ti-chevron-right" style="font-size:9px"></i>Ver</span></div>
+    </div>
+    <div class="final-banner" id="FB">
+      <i class="ti ti-heart" style="font-size:26px;display:block;margin-bottom:6px" id="FBH"></i>
+      <div style="font-size:17px;font-weight:900">Tus derechos. Tu cuerpo. Tu decisión.</div>
+      <div style="font-size:11px;opacity:.7;margin-top:4px;font-weight:700">ESI — Discapacidad Auditiva — UNAD 2026</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- MODAL VIEW -->
+<div class="pg" id="pM">
+<div class="modal-wrap" id="MWrap">
+  <div class="mhdr" id="MHdr">
+    <button class="mhdr-back" onclick="closeModal()"><i class="ti ti-arrow-left" style="font-size:13px"></i>Volver</button>
+    <div class="mhdr-ico" id="MIco"></div>
+    <div class="mhdr-title" id="MTit"></div>
+    <div class="mhdr-sub" id="MSub"></div>
+  </div>
+  <div class="mbody" id="MBody"></div>
+</div>
+</div>
+
+</div><!-- end pgc -->
+
+<div class="nav-row">
+  <button class="nbtn" id="prevBtn" onclick="changePage(-1)" disabled><i class="ti ti-arrow-left"></i>Anterior</button>
+  <div class="pctr" id="pctr">Portada</div>
+  <button class="nbtn" id="nextBtn" onclick="changePage(1)">Siguiente<i class="ti ti-arrow-right"></i></button>
+</div>
+
+<div class="footer">
+  Cartilla ESI Accesible — Discapacidad Auditiva &nbsp;·&nbsp; UNAD 2026<br>
+  <a href="https://insor.gov.co" target="_blank">insor.gov.co</a> &nbsp;·&nbsp;
+  <a href="https://colombia.unfpa.org" target="_blank">UNFPA Colombia</a> &nbsp;·&nbsp;
+  Línea ICBF: <strong>106</strong>
+</div>
+
+</div><!-- end app -->
+
+<script>
+const MODALS={
+lsc:{color:'#085041',icon:'ti-accessible',title:'¿Qué es la LSC?',sub:'Lengua de Señas Colombiana',secs:[{t:'Definición',text:'La LSC es la lengua natural y oficial de la comunidad sorda en Colombia. Usa movimientos de manos, expresiones faciales y postura corporal para comunicarse. No es una versión visual del español — es un idioma completo e independiente, con su propia gramática y estructura.'},{t:'En educación sexual',text:'Muchos términos de salud sexual no tienen seña establecida en LSC. Por eso es clave trabajar con intérpretes certificados por el INSOR y usar materiales visuales que complementen la comunicación verbal.'}],lsc:'Consulta el canal del INSOR Colombia en YouTube para aprender señas de salud y cuerpo. En hospitales, tienes derecho legal a solicitar un intérprete LSC — ampárate en la Ley 324 de 1996.',fact:'En Colombia hay aproximadamente 500.000 personas sordas. Para muchas de ellas el español es su segunda lengua, por lo que los materiales educativos deben priorizarse en LSC y lenguaje visual.'},
+cabeza:{color:'#1D9E75',icon:'ti-brain',title:'La cabeza y el cerebro',sub:'Centro del pensamiento y las emociones',secs:[{t:'¿Qué hace?',text:'El cerebro controla todo tu cuerpo: movimiento, emociones, memoria y pensamiento. También procesa lo que sientes cuando te relacionas con otras personas, incluyendo atracción, amor y bienestar emocional.'},{t:'En la sexualidad',text:'La sexualidad empieza en la mente. Las emociones, deseos y decisiones sobre tu cuerpo se procesan en el cerebro. Por eso la salud mental y emocional es parte fundamental de la educación sexual integral.'}],lsc:'La seña de "cerebro" en LSC se hace tocando la sien con el dedo índice y haciendo un giro pequeño. Aprende señas relacionadas con emociones con tu intérprete.',fact:'La adolescencia es la etapa donde el cerebro tiene más cambios después de los primeros años de vida. El lóbulo prefrontal — que regula decisiones — no termina de desarrollarse hasta los 25 años.'},
+cuerpo_general:{color:'#1D9E75',icon:'ti-lungs',title:'El cuerpo: un sistema completo',sub:'Todas las partes trabajan juntas',secs:[{t:'¿Por qué importa conocerlo?',text:'Conocer tu cuerpo te permite entender los cambios de la pubertad, identificar cuándo algo no está bien y comunicar tus necesidades de salud. El conocimiento corporal es la base de la autonomía.'},{t:'Dimensión biológica de la sexualidad',text:'La sexualidad incluye aspectos biológicos como la anatomía, los órganos reproductivos, la respuesta sexual y la salud reproductiva. Todos merecemos información clara y accesible sobre cómo funciona nuestro cuerpo.'}],lsc:'Para hablar del cuerpo en LSC existen señas específicas para cada parte. Es importante aprender el vocabulario correcto — no diminutivos ni eufemismos — para comunicar con precisión tus necesidades de salud.',fact:'El derecho a la salud sexual incluye el acceso a información completa sobre el cuerpo. Las personas con discapacidad auditiva tienen el mismo derecho a esta información que cualquier otra persona.'},
+partes_intimas:{color:'#A32D2D',icon:'ti-shield',title:'Las partes íntimas',sub:'Zona privada — solo tú decides',secs:[{t:'¿Cuáles son?',text:'Son las partes del cuerpo que cubre el traje de baño: los genitales (pene o vulva), el trasero (glúteos) y, en el caso de las personas con senos, el pecho. Son privadas porque pertenecen únicamente a ti.'},{t:'Autonomía corporal',text:'Tú eres el dueño o dueña de tu cuerpo. Nadie — ni familiares, ni cuidadores, ni médicos sin explicación — tiene derecho a tocarte en estas zonas sin tu permiso o sin darte una razón médica válida. Siempre puedes preguntar por qué y decir no.'}],lsc:'En LSC hay señas específicas para los órganos genitales. Aprender estas señas con tu intérprete te permite comunicar con precisión si algo te incomoda o si necesitas ayuda médica.',fact:'Enseñar a los jóvenes el nombre correcto de sus partes íntimas reduce el riesgo de abuso sexual y les da herramientas para comunicar si algo inapropiado ocurre.'},
+autonomia_corporal:{color:'#0F6E56',icon:'ti-user-check',title:'Autonomía corporal',sub:'Tu cuerpo, tus reglas',secs:[{t:'¿Qué es?',text:'La autonomía corporal es el derecho a tomar decisiones sobre tu propio cuerpo: qué comes, cómo te vistes, a quién le permites tocarte, cómo expresas tu sexualidad. Nadie puede tomar estas decisiones por ti sin tu consentimiento.'},{t:'Para personas con discapacidad',text:'Históricamente, las personas con discapacidad han tenido su autonomía limitada por otros. La ESI busca cambiar esto, reconociendo que cada persona tiene derecho a tomar decisiones informadas sobre su cuerpo y su vida sexual.'}],lsc:'Aprende la seña de "decisión" y "mi cuerpo" en LSC. Estas señas son herramientas de empoderamiento para expresar claramente tus límites y derechos.',fact:'La Convención sobre los Derechos de las Personas con Discapacidad (ONU, 2006) reconoce explícitamente el derecho a la autonomía personal, incluyendo la libertad de tomar decisiones sobre la propia vida.'},
+vello:{color:'#534AB7',icon:'ti-beard',title:'Crecimiento del vello corporal',sub:'Una señal normal de la pubertad',secs:[{t:'¿Por qué crece vello?',text:'Durante la pubertad, las glándulas suprarrenales y las gónadas producen más hormonas (andrógenos). Estas activan los folículos pilosos en la piel, haciendo que el vello crezca en nuevas zonas: axilas, pubis, piernas, cara. Es completamente normal.'},{t:'¿Es igual en todos?',text:'No. La cantidad, color y velocidad con que crece el vello varía según la genética y el origen étnico. No existe un "normal" único — hay mucha diversidad y todas las variaciones son válidas.'}],lsc:'Para explicar este cambio en LSC se pueden usar señas descriptivas que imiten el crecimiento. Tu intérprete puede ayudarte a construir el vocabulario adecuado para hablar de cambios corporales.',fact:'Los andrógenos son hormonas presentes en todos los cuerpos, tanto en personas con ovarios como con testículos, aunque en proporciones diferentes. Son responsables de múltiples cambios en la pubertad.'},
+voz:{color:'#185FA5',icon:'ti-microphone',title:'El cambio de voz',sub:'La laringe crece y la voz cambia',secs:[{t:'¿Qué ocurre?',text:'Durante la pubertad, la laringe (la "caja de voz") crece. Las cuerdas vocales se hacen más largas y gruesas, produciendo un sonido más grave. En personas con testículos este cambio suele ser más notorio e incluye los "gallos".'},{t:'Para personas sordas',text:'Las personas con discapacidad auditiva profunda pueden no percibir el cambio de voz directamente, pero sí pueden sentir las vibraciones en el cuello y el pecho. Los audífonos e implantes cocleares también captan diferente el sonido durante este proceso.'}],lsc:'Aunque no se escuche la voz, los cambios en la laringe ocurren igual en personas sordas. Tu intérprete o profesional de salud puede explicarte cómo estos cambios afectan la vibración y la percepción táctil.',fact:'Los "gallos" de voz son normales durante la pubertad y pueden durar entre 2 y 3 años. No indican ningún problema de salud.'},
+crecimiento:{color:'#3B6D11',icon:'ti-arrows-maximize',title:'El estirón de la pubertad',sub:'Crecer rápido es normal',secs:[{t:'¿Qué es el estirón?',text:'Es el período de crecimiento acelerado que ocurre durante la pubertad. Puede durar 2 a 3 años. El cuerpo no solo crece en altura — también cambian las proporciones: los brazos, piernas y tronco crecen a ritmos diferentes.'},{t:'Cambios en el cuerpo',text:'Además de la altura, el cuerpo desarrolla más masa muscular, los hombros o caderas se ensanchan, y la composición corporal cambia. Todos estos cambios forman parte del desarrollo sexual secundario.'}],lsc:'El INSOR tiene recursos sobre cambios corporales en LSC. Si tienes dudas sobre tu crecimiento, pide a tu médico que te explique usando modelos visuales o materiales accesibles.',fact:'Durante el pico de crecimiento en la pubertad, algunas personas crecen hasta 10 cm en un solo año. El esqueleto puede tardar hasta los 20 años en completar su maduración.'},
+emociones:{color:'#993556',icon:'ti-mood-happy',title:'Los cambios emocionales',sub:'Las emociones también se transforman',secs:[{t:'¿Por qué cambian las emociones?',text:'El cerebro adolescente está en construcción. El sistema límbico — responsable de las emociones — está muy activo, mientras que el lóbulo prefrontal — que regula el control de impulsos — aún no está totalmente desarrollado. Las emociones se sienten más intensas.'},{t:'Sexualidad y emociones',text:'Es normal comenzar a sentir atracción romántica o sexual hacia otras personas. También es normal tener dudas sobre la identidad de género o la orientación sexual. Estas emociones son parte del desarrollo y no hay una sola forma "correcta" de vivirlas.'}],lsc:'Las señas de emociones en LSC son muy expresivas e involucran el cuerpo entero. Aprender a expresar emociones en LSC puede ser una herramienta poderosa para la salud mental y las relaciones.',fact:'La diversidad en orientación sexual e identidad de género es un fenómeno natural y documentado en todas las culturas humanas. No es una enfermedad ni una elección.'},
+si_consentimiento:{color:'#3B6D11',icon:'ti-thumb-up',title:'El consentimiento: SÍ',sub:'Libre, informado y entusiasta',secs:[{t:'¿Cómo es un SÍ real?',text:'El consentimiento válido debe ser: LIBRE (sin presión ni miedo), INFORMADO (sabiendo qué se está aceptando), ENTUSIASTA (con ganas reales), REVERSIBLE (puedes cambiar de opinión en cualquier momento) y ESPECÍFICO (decir sí a una cosa no es decir sí a todo).'},{t:'En comunicación no verbal y LSC',text:'Para personas sordas es importante desarrollar vocabulario en LSC para expresar consentimiento: las señas de SÍ, QUIERO, ACEPTO, ESTÁ BIEN. También es clave aprender a leer el lenguaje corporal y las expresiones faciales que acompañan el consentimiento genuino.'}],lsc:'La seña de SÍ en LSC se hace moviendo el puño cerrado de arriba a abajo, similar a asentir con la cabeza. Combínala con expresión facial positiva para reforzar el mensaje.',fact:'El consentimiento afirmativo es reconocido en múltiples marcos legales internacionales. En Colombia, la Ley 1719 de 2014 refuerza este concepto en materia de violencia sexual.'},
+no_consentimiento:{color:'#A32D2D',icon:'ti-hand-off',title:'El consentimiento: NO',sub:'Siempre válido, siempre respetable',secs:[{t:'¿Cuándo decir NO?',text:'Puedes decir NO en cualquier momento, incluso si antes dijiste sí. NO cuando tienes miedo. NO cuando te sientes presionado/a. NO cuando no quieres y punto — sin necesidad de dar explicaciones. NO es una respuesta completa y válida por sí sola.'},{t:'Reconocer la coerción',text:'La coerción es cuando alguien te presiona, manipula o amenaza para que hagas algo que no quieres. No siempre es violencia física — puede ser insistencia, chantaje emocional o hacerte sentir culpable. Si algo te hace sentir incómodo/a, es una señal de alerta.'}],lsc:'La seña de NO en LSC se hace moviendo el índice y el dedo medio juntos contra el pulgar, cerrando la mano. Combínala con expresión facial firme y movimiento negativo de cabeza para mayor claridad.',fact:'Las personas con discapacidad tienen mayor riesgo de sufrir abuso sexual. La educación en consentimiento es una herramienta preventiva fundamental y un derecho.'},
+solo_si:{color:'#173404',icon:'ti-gavel',title:'SOLO SÍ ES SÍ — Marco legal',sub:'Tu protección jurídica en Colombia',secs:[{t:'¿Qué dice la ley?',text:'La Ley 1719 de 2014 en Colombia protege a las víctimas de violencia sexual. Establece que el consentimiento debe ser explícito y voluntario. La ausencia de resistencia NO equivale a consentimiento. El silencio NO es un sí.'},{t:'Derechos específicos con discapacidad',text:'Las personas con discapacidad tienen protección reforzada. La Convención sobre los Derechos de las Personas con Discapacidad (ONU) establece que deben recibir información sobre sexualidad de manera accesible, y que el Estado debe garantizar programas de apoyo para el ejercicio de su vida sexual.'}],lsc:'Si necesitas reportar una situación de abuso, tienes derecho a un intérprete LSC en cualquier instancia judicial o policial. El INSOR puede orientarte sobre cómo acceder a este servicio.',fact:'En Colombia, las denuncias por violencia sexual pueden hacerse en la Fiscalía (línea 122), comisarías de familia o llamando al ICBF (106). Todos estos servicios deben garantizar accesibilidad para personas sordas.'},
+abuso_definicion:{color:'#D85A30',icon:'ti-shield-x',title:'Tipos de abuso sexual',sub:'Reconocer para protegerse',secs:[{t:'¿Qué es el abuso sexual?',text:'Es cualquier contacto o comportamiento sexual sin consentimiento. Incluye: tocamientos no deseados en zonas íntimas, exhibicionismo, exposición a material pornográfico sin querer, acoso verbal sexual y, en casos graves, penetración. Puede ocurrirle a cualquier persona independientemente de su discapacidad.'},{t:'Abuso en personas con discapacidad',text:'Las personas con discapacidad auditiva pueden ser más vulnerables porque tienen menos acceso a educación sexual, pueden depender de cuidadores, y en ocasiones enfrentan dificultad para comunicar lo ocurrido. Conocer los tipos de abuso es una herramienta de protección.'}],lsc:'Si necesitas comunicar que has sufrido abuso, recuerda que tienes derecho a un intérprete LSC en hospitales, centros de salud y estaciones de policía. Nunca estás solo/a.',fact:'Según estudios, las personas con discapacidad tienen entre 2 y 5 veces más riesgo de sufrir abuso sexual que la población general. Por esto, la ESI accesible es una prioridad de salud pública.'},
+acudir:{color:'#3B6D11',icon:'ti-user-heart',title:'¿A quién acudir si hay abuso?',sub:'No estás solo/a — hay personas que pueden ayudar',secs:[{t:'Personas de confianza',text:'Puedes hablar con un familiar de confianza, un profesor, un psicólogo escolar o un médico. Lo importante es contárselo a alguien que te crea y tome acción. Si la primera persona no te ayuda, busca a otra. Tu testimonio es válido.'},{t:'Instituciones en Colombia',text:'Puedes acudir a: Comisaría de Familia de tu municipio, ICBF (línea 106), Fiscalía General de la Nación (línea 122), o cualquier hospital o clínica para atención de urgencias.'}],lsc:'Muchas instituciones en Colombia tienen protocolo de atención para personas sordas. Puedes solicitar intérprete LSC al llegar. También puedes llevar un acompañante que conozca LSC para facilitar la comunicación.',fact:'El INSOR (Instituto Nacional para Sordos) ofrece orientación y puede conectarte con servicios accesibles. Visita: insor.gov.co'},
+linea_106:{color:'#185FA5',icon:'ti-phone-call',title:'Línea 106 — ICBF',sub:'Cómo usarla y qué esperar',secs:[{t:'¿Qué es la línea 106?',text:'Es la línea gratuita del Instituto Colombiano de Bienestar Familiar (ICBF). Atiende casos de violencia, abuso o amenaza contra niños, niñas y adolescentes. Disponible las 24 horas, los 7 días de la semana, desde cualquier teléfono en Colombia sin costo.'},{t:'Para personas sordas',text:'El ICBF cuenta con atención para personas sordas a través de videollamada con intérprete LSC. También puedes acercarte personalmente a cualquier Regional del ICBF. Llevar a una persona oyente de confianza puede facilitar la comunicación inicial.'}],lsc:'El ICBF tiene el compromiso de garantizar accesibilidad comunicativa. Pide explícitamente "intérprete de lengua de señas" al momento de acudir. Es tu derecho y no puede ser negado.',fact:'La línea 106 es confidencial y gratuita. No es necesario dar el nombre para hacer una denuncia. El ICBF tiene la obligación de actuar ante cualquier caso reportado.'},
+condon:{color:'#534AB7',icon:'ti-condom',title:'El condón',sub:'Tu escudo más accesible',secs:[{t:'¿Qué es y para qué sirve?',text:'El condón (masculino o femenino) es una barrera física que previene el embarazo y reduce el riesgo de infecciones de transmisión sexual (ITS) como el VIH, la clamidia y la gonorrea. Es el único método anticonceptivo que hace ambas cosas a la vez.'},{t:'¿Cómo usarlo correctamente?',text:'1. Verificar la fecha de vencimiento. 2. Abrir el paquete con cuidado, sin dientes ni tijeras. 3. Colocarlo antes de cualquier contacto genital. 4. Dejar espacio en la punta. 5. Retirarlo mientras aún hay erección. 6. Usar uno nuevo cada vez. Efectividad con uso correcto: más del 98%.'}],lsc:'Existen videos en LSC del Ministerio de Salud de Colombia que explican el uso correcto del condón. Pídele a tu médico que te muestre la demostración con materiales visuales.',fact:'El condón femenino (condón interno) puede colocarse hasta 8 horas antes de la relación sexual. Está disponible en droguerías y centros de salud de Colombia.'},
+pastillas:{color:'#993556',icon:'ti-pill',title:'Pastillas anticonceptivas',sub:'¿Cómo funcionan?',secs:[{t:'Tipos y funcionamiento',text:'Las pastillas anticonceptivas contienen hormonas sintéticas (estrógeno y/o progesterona) que previenen la ovulación, espesan el moco cervical y dificultan la implantación. Existen pastillas combinadas y de progesterona sola. Requieren prescripción médica.'},{t:'¿Cuándo hablar con un médico?',text:'Antes de tomar cualquier anticonceptivo hormonal, consulta un médico o ginecólogo. Algunos anticonceptivos pueden interactuar con otros medicamentos. El médico evaluará cuál método es el más adecuado para ti.'}],lsc:'Solicita a tu médico que te explique el método anticonceptivo usando imágenes, modelos físicos o materiales en LSC. Tienes derecho a recibir información en un formato que entiendas completamente.',fact:'Las pastillas anticonceptivas, usadas correctamente, tienen una efectividad superior al 99%. Sin embargo, NO protegen contra infecciones de transmisión sexual. Para eso, usa también condón.'},
+consulta_medica:{color:'#085041',icon:'ti-stethoscope',title:'La consulta médica',sub:'Tus derechos al ir al médico',secs:[{t:'¿Qué es una consulta de salud sexual?',text:'Es una visita a un profesional de salud para hablar sobre tu salud sexual y reproductiva. Puedes preguntar sobre métodos anticonceptivos, ITS, cambios corporales, dudas sobre tu sexualidad, o cualquier malestar físico relacionado.'},{t:'Tus derechos en la consulta',text:'Tienes derecho a: confidencialidad, información en LSC o lenguaje sencillo, tomar decisiones informadas sobre tu cuerpo, y ser tratado/a con respeto y dignidad sin importar tu discapacidad o historia personal.'}],lsc:'Antes de tu consulta, puedes preparar tus preguntas por escrito o en video en LSC. Solicita con anticipación un intérprete LSC certificado — el centro de salud está obligado a proporcionarlo según la Ley 324 de 1996.',fact:'El derecho a la salud sexual y reproductiva está consagrado en la Constitución Colombiana. Las personas con discapacidad tienen los mismos derechos que cualquier otra persona al acceder a servicios de salud.'},
+control_salud:{color:'#BA7517',icon:'ti-heart-rate-monitor',title:'Control periódico de salud',sub:'Cuidarte es un acto de amor propio',secs:[{t:'¿Por qué es importante el control regular?',text:'Los controles regulares permiten detectar problemas antes de que se vuelvan graves, actualizar métodos anticonceptivos, hacerse pruebas de ITS y resolver dudas de salud sexual con un profesional. Se recomiendan al menos una vez al año.'},{t:'¿Qué controles hacer?',text:'Depende de tu edad y situación: Papanicolaou (para personas con cuello uterino, cada 3 años desde los 21), pruebas de VIH e ITS si eres sexualmente activo/a, y vacuna contra el VPH (disponible gratuitamente en Colombia para menores de 26 años).'}],lsc:'Puedes usar una tarjeta con pictogramas para comunicar tus síntomas al médico. Lleva siempre tu historia médica escrita. Pide siempre que te expliquen los resultados de forma accesible.',fact:'En Colombia, el sistema de salud (EPS) debe cubrir las consultas de salud sexual y reproductiva sin costo adicional. Si te niegan el servicio o el intérprete LSC, puedes interponer una tutela.'},
+d_informacion:{color:'#1D9E75',icon:'ti-book-2',title:'Derecho a la información',sub:'Clara, accesible y en tu idioma',secs:[{t:'¿En qué consiste?',text:'Toda persona tiene derecho a recibir información completa, científicamente correcta y accesible sobre salud sexual y reproductiva. Para personas sordas, esto significa que la información debe estar disponible en LSC, con subtítulos, en lenguaje sencillo o con apoyo de intérprete.'},{t:'¿Quién debe garantizarlo?',text:'El Estado colombiano, las instituciones educativas, el sistema de salud y los medios de comunicación tienen la obligación de garantizar que las personas con discapacidad auditiva accedan a la misma información que el resto de la población, sin barreras.'}],lsc:'El INSOR (insor.gov.co) produce materiales educativos en LSC sobre salud y derechos. También puedes buscar "salud sexual LSC" en YouTube para encontrar contenido accesible.',fact:'El derecho a la información sexual está reconocido en los Principios y Directrices de la UNESCO (2018) y en el Marco de los Derechos Sexuales de la IPPF. Incluye el derecho a información libre de prejuicios.'},
+d_no:{color:'#A32D2D',icon:'ti-hand-stop',title:'Derecho a decir NO',sub:'La integridad corporal es sagrada',secs:[{t:'¿Qué es la integridad corporal?',text:'Es el derecho a que nadie toque, manipule o intervenga tu cuerpo sin tu consentimiento explícito. Este derecho aplica en relaciones sexuales, consultas médicas, procedimientos estéticos, y cualquier situación donde se involucre tu cuerpo.'},{t:'Particularmente importante',text:'Las personas con discapacidad a veces reciben el mensaje de que "deben agradecer" el afecto o la atención de otros. Esto es falso y peligroso. Tu cuerpo es tuyo siempre, independientemente de tu discapacidad o de quién sea la otra persona.'}],lsc:'La seña de "NO" en LSC es clara y directa. Aprende también la seña de "PARA" y "NO QUIERO". Tener este vocabulario te da herramientas de protección inmediata en cualquier situación.',fact:'El Comité sobre los Derechos de las Personas con Discapacidad (ONU) ha destacado que la esterilización forzada y los tratamientos médicos sin consentimiento son violaciones graves a los derechos humanos.'},
+d_autonomia:{color:'#534AB7',icon:'ti-brain',title:'Derecho a la autonomía',sub:'Yo decido sobre mi vida y mi cuerpo',secs:[{t:'¿Qué es la autonomía?',text:'Es la capacidad y el derecho de tomar tus propias decisiones sobre tu cuerpo, tu sexualidad, tus relaciones y tu vida reproductiva. Incluye decidir si tener o no relaciones sexuales, qué método anticonceptivo usar, y cómo expresar tu identidad y orientación sexual.'},{t:'Autonomía y discapacidad',text:'Históricamente, las personas con discapacidad han visto su autonomía reducida por tutores o instituciones que tomaban decisiones "por su bien". La Convención de la ONU (2006) reconoce la autonomía como un principio fundamental que debe respetarse siempre.'}],lsc:'La seña de "AUTONOMÍA" o "DECISIÓN PROPIA" en LSC refuerza el concepto de que eres tú quien decide. Trabaja con tu intérprete para desarrollar un vocabulario de empoderamiento personal.',fact:'El modelo social de discapacidad — adoptado por la ONU — establece que la discapacidad resulta de las barreras del entorno, no de las características de la persona. Eliminar barreras comunicativas garantiza la autonomía.'},
+d_respeto:{color:'#185FA5',icon:'ti-users',title:'Derecho a relaciones con respeto',sub:'Igualdad, dignidad y no discriminación',secs:[{t:'¿Cómo es una relación respetuosa?',text:'Una relación sana — ya sea romántica, sexual o de amistad — se basa en: igualdad, consentimiento mutuo, comunicación abierta, respeto por los límites del otro, y apoyo al bienestar de ambas personas. No existe amor verdadero sin respeto.'},{t:'Discriminación por discapacidad',text:'Las personas con discapacidad tienen derecho a relacionarse afectiva y sexualmente sin ser discriminadas por su condición. Nadie puede invalidar tus relaciones o tu sexualidad basándose en tu discapacidad auditiva. Eres una persona completa, con derechos plenos.'}],lsc:'Aprender el vocabulario de relaciones y emociones en LSC te permite comunicarte con mayor precisión con tu pareja. La comunicación clara es la base de cualquier relación sana.',fact:'La Encuesta de Demografía y Salud de Colombia muestra que las personas con discapacidad tienen menor acceso a programas de planificación familiar y educación sexual — un problema de equidad urgente.'}
+};
+
+const N=7,titles=['Portada','Página 1 — Mi cuerpo','Página 2 — Adolescencia','Página 3 — Consentimiento','Página 4 — Prevención','Página 5 — Métodos','Página 6 — Derechos'];
+let cur=0,prevCur=0,dir=1,inModal=false;
+
+const bar=document.getElementById('pbar');
+for(let i=0;i<N;i++){
+  const d=document.createElement('div');
+  d.className='dot'+(i===0?' active':'');
+  d.setAttribute('aria-label',titles[i]);
+  d.onclick=()=>{if(!inModal)goTo(i);};
+  bar.appendChild(d);
+}
+
+function renderModal(k){
+  const m=MODALS[k];
+  document.getElementById('MHdr').style.background=m.color;
+  document.getElementById('MIco').innerHTML=`<i class="ti ${m.icon}"></i>`;
+  document.getElementById('MTit').textContent=m.title;
+  document.getElementById('MSub').textContent=m.sub;
+  let html='';
+  m.secs.forEach((s,i)=>{
+    html+=`<div class="msec" style="animation:staggerIn .35s ${i*.1}s both"><div class="msec-label" style="color:${m.color}"><i class="ti ti-point-filled" style="font-size:10px"></i>${s.t.toUpperCase()}</div><div class="msec-text">${s.text}</div></div>`;
+  });
+  if(m.lsc){html+=`<div class="lsc-box" style="animation:staggerIn .35s ${m.secs.length*.1}s both"><div class="lsc-lbl"><i class="ti ti-accessible" style="font-size:12px"></i>SEÑA LSC / CONSEJO DE ACCESIBILIDAD</div><div class="lsc-txt">${m.lsc}</div></div>`;}
+  if(m.fact){html+=`<div class="fact-box" style="animation:staggerIn .35s ${(m.secs.length+1)*.1}s both"><div class="fact-lbl"><i class="ti ti-bulb" style="font-size:12px"></i>¿SABÍAS QUE?</div><div class="fact-txt">${m.fact}</div></div>`;}
+  document.getElementById('MBody').innerHTML=html;
+}
+
+function openModal(k){
+  if(!MODALS[k])return;
+  prevCur=cur;inModal=true;
+  document.getElementById('p'+cur).classList.remove('active');
+  document.getElementById('prevBtn').disabled=true;
+  document.getElementById('nextBtn').disabled=true;
+  document.getElementById('pctr').textContent='Toca Volver para regresar';
+  renderModal(k);
+  const pm=document.getElementById('pM');
+  pm.classList.add('active');
+  document.getElementById('MWrap').style.animation='modalIn .4s cubic-bezier(.2,.8,.4,1) both';
+}
+
+function closeModal(){
+  inModal=false;
+  document.getElementById('pM').classList.remove('active');
+  const prev=document.getElementById('p'+prevCur);
+  prev.classList.add('active');
+  prev.style.animation='fadeUp .3s both';
+  document.getElementById('prevBtn').disabled=prevCur===0;
+  document.getElementById('nextBtn').disabled=prevCur===N-1;
+  document.getElementById('pctr').textContent=titles[prevCur];
+  cur=prevCur;
+  updateDots();
+}
+
+function updateDots(){
+  document.querySelectorAll('.dot').forEach((d,i)=>{
+    d.classList.remove('active','visited');
+    if(i<cur)d.classList.add('visited');
+    if(i===cur)d.classList.add('active');
+  });
+}
+
+function animPage(id){
+  const pg=document.getElementById('p'+id);
+  pg.classList.remove('aR','aL');
+  void pg.offsetWidth;
+  pg.classList.add(dir>=0?'aR':'aL');
+  if(id===6){
+    setTimeout(()=>{
+      const h=document.getElementById('FBH');
+      if(h)h.style.animation='pulse .9s ease-in-out infinite';
+      confetti();
+    },500);
+  }
+  if(id===0){
+    setTimeout(()=>{
+      document.querySelectorAll('.cico').forEach((el,i)=>{
+        el.style.animation=`float ${2+i*.35}s ${i*.2}s ease-in-out infinite`;
+      });
+    },700);
+  }
+}
+
+function confetti(){
+  const b=document.getElementById('FB');if(!b)return;
+  const cols=['#1D9E75','#534AB7','#D85A30','#FAC775','#E24B4A','#378ADD'];
+  for(let i=0;i<22;i++){
+    const d=document.createElement('div');
+    d.className='conf-dot';
+    const sz=4+Math.random()*6;
+    d.style.cssText=`width:${sz}px;height:${sz}px;background:${cols[Math.floor(Math.random()*cols.length)]};left:${Math.random()*100}%;top:${Math.random()*100}%;animation:confPop ${.7+Math.random()*.6}s ${Math.random()*.4}s both`;
+    b.appendChild(d);
+    setTimeout(()=>{if(d.parentNode)d.parentNode.removeChild(d);},2000);
+  }
+}
+
+function goTo(n){
+  if(inModal)return;
+  dir=n-cur;
+  document.getElementById('p'+cur).classList.remove('active');
+  cur=n;
+  document.getElementById('p'+cur).classList.add('active');
+  animPage(cur);
+  updateDots();
+  document.getElementById('pctr').textContent=titles[cur];
+  document.getElementById('prevBtn').disabled=cur===0;
+  document.getElementById('nextBtn').disabled=cur===N-1;
+}
+
+function changePage(d){goTo(Math.max(0,Math.min(N-1,cur+d)));}
+
+document.querySelectorAll('.nbtn').forEach(btn=>{
+  btn.addEventListener('click',function(e){
+    const r=document.createElement('div');r.className='rplel';
+    const rect=this.getBoundingClientRect();
+    const sz=Math.max(rect.width,rect.height)*1.5;
+    r.style.cssText=`width:${sz}px;height:${sz}px;left:${e.clientX-rect.left-sz/2}px;top:${e.clientY-rect.top-sz/2}px`;
+    this.appendChild(r);
+    setTimeout(()=>{if(r.parentNode)r.parentNode.removeChild(r);},700);
+  });
+});
+
+goTo(0);
+</script>
+</body>
+</html>
